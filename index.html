@@ -3,14 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Landing Page</title>
+    <title>Timothy's Desktop</title>
+
+    <!-- External files-->
+    <link rel="stylesheet" href="portfolio_src/desktop.css" />
+    <script type ="module" src="portfolio_src/desktop_main.js" defer></script>
 </head>
 <body>
-    <h1>This page is currently under construction, sorry :(</h1>
-    <table>
-        <tr>
-            <td><a href="Portfolio/projects.html">View Projects</a></td>
-        </tr>
-    </table>
+
+    <!-- Login Page -->
+    <section id = "welcomeScreen" class = "active">
+        <div class = "welcomeScreen-wrapper">
+            <p>00:00</p>
+            <h1>This is the welcome page!</h1>
+            <button id="enterDesktop">Enter OS</button>
+        </div>
+    </section>
+
+    <!-- Desktop -->
+    <section id="desktopEnvironment">
+        <div id="mainWindowContainer">
+            <canvas id="desktopCanvas"></canvas>
+            <h1>Test Text ARHGHHSHFDHSFH</h1>
+        </div>
+
+        <div id="taskbar">
+            <div id="dockedApps">
+                
+            </div>
+        </div>
+    </section>
 </body>
 </html>
