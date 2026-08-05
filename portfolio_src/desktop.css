@@ -31,7 +31,7 @@ html, body {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.5s ease, visibility 0.5s ease;
-  pointer-events: none; /* Allows clicks to pass through to desktop */
+  pointer-events: none; /* mAllows clicks to pass through to desktop */
 }
 
 /* Desktop environment */
