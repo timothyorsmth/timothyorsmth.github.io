@@ -6,18 +6,27 @@
     <title>Timothy's Desktop</title>
 
     <!-- External files-->
-    <link rel="stylesheet" href="portfolio_src/desktop.css" />
+    <link rel="stylesheet" href="portfolio_src/common.css" />
+    <link rel="stylesheet" href="portfolio_src/loadingScreen.css" />
+
     <script type ="module" src="portfolio_src/desktop_main.js" defer></script>
 </head>
 <body>
 
     <!-- Login Page -->
     <section id = "welcomeScreen" class = "active">
-        <img src = "portfolio_assets/Images/LoadingScreen/speech_bubble.png">
+        <img src = "portfolio_assets/Images/LoadingScreen/speech_bubble.png" class = "speechBubble" alt="Speech Bubble">
         <div class = "welcomeScreen-wrapper">
-            <div class = "helloLetters"></div>
-            <h1>Welcome to my wacky little hub :D</h1>
-            <button id="enterDesktop">Enter OS</button>
+            <div id = "helloLetters">
+                <img src = "portfolio_assets/Images/LoadingScreen/H paper cutout.png" alt="H">
+                <img src = "portfolio_assets/Images/LoadingScreen/E paper cutout.png" alt="E">
+                <img src = "portfolio_assets/Images/LoadingScreen/L paper cutout.png" alt="L">
+                <img src = "portfolio_assets/Images/LoadingScreen/L paper cutout.png" alt="L">
+                <img src = "portfolio_assets/Images/LoadingScreen/O paper cutout.png" alt="O">
+                <img src = "portfolio_assets/Images/LoadingScreen/Exclpt paper cutout.png" alt="!">
+            </div>
+            <h1>Welcome to my wacky little world :D</h1>
+            <button id="enterDesktop">Let's Go!</button>
         </div>
     </section>
 
