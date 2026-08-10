@@ -43,7 +43,6 @@
   position: absolute;
   width: 80%;
   height: auto;
-  filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.9));
 }
 
 #welcomeScreen .welcomeScreen-wrapper {
@@ -80,7 +79,39 @@
   max-width: 100%;
   height: 60%;
   object-fit: cover;
-  filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.9));
+
+  /* animation */
+  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.doodleStar1 {
+  top: 10%;
+  right: 10%;
+  width: 15%;
+  height: auto;
+}
+
+.doodleStar2 {
+  top: 7%;
+  right: 5%;
+  width: 7%;
+  height: auto;
+}
+
+#startExperience {
+  background-image: url('../portfolio_assets/Images/LoadingScreen/orange button alt.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-color: transparent;
+
+  width: 100%;
+  height: 100%;
+  border: none;
+
+  font-family: 'Wobbly', sans-serif;
+  font-size: 1.75rem;
+  color: #e9611d;
 }
 
 
