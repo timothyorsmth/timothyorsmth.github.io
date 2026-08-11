@@ -5,6 +5,12 @@ html, body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+
+  cursor: none; /* Hide the default cursor */
+}
+
+button {
+  cursor: none; /* Hide the default cursor for buttons */
 }
 
 /* Set fonts for use */
@@ -24,6 +30,38 @@ html, body {
   font-display: swap; /* Improves loading performance */
 }
 
+/* common classes so we don't need to keep typing this */
 .decorations {
   position: absolute;
+}
+
+/* cursor */
+#cursor {
+  position: fixed;
+
+  pointer-events: none;
+  z-index: 10000;
+}
+
+#defaultCursor {
+  width: 20px;
+  height: 20px;
+
+  background-image: url('../portfolio_assets/Images/Cursor/default-cursor.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#clickCursor {
+  width: 20px;
+  height: 20px;
+
+  
+}
+
+#clickCursor p {
+  font-family: 'Wobbly', sans-serif;
+  font-size: 1.75rem;
+  text-align: center;
 }

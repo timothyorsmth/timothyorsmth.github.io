@@ -9,15 +9,25 @@
     <link rel="stylesheet" href="portfolio_src/common.css" />
     <link rel="stylesheet" href="portfolio_src/loadingScreen.css" />
 
+    <script type ="module" src="portfolio_src/jquery-4.0.0.min.js"></script>
+    <script type ="module" src="portfolio_src/common.js" defer></script>
     <script type ="module" src="portfolio_src/loadingScreen.js" defer></script>
 </head>
 <body>
+    <!-- Cursor -->
+    <div id="cursor">
+        <div id = "defaultCursor"></div>
+        <div id = "clickCursor">
+            <p><b>:D</b></p>
+        </div>
+    </div>
 
     <!-- Login Page -->
     <section id = "welcomeScreen" class = "active">
         <img src = "portfolio_assets/Images/LoadingScreen/speech_bubble.png" class = "speechBubble" alt="Speech Bubble">
         <img src = "portfolio_assets/Images/LoadingScreen/Doodle star.png" class = "doodleStar1 decorations" alt="Doodle Star">
         <img src = "portfolio_assets/Images/LoadingScreen/Doodle star.png" class = "doodleStar2 decorations" alt="Doodle Star">
+        <img src = "portfolio_assets/Images/LoadingScreen/white tape.png" class = "whiteTape decorations" alt="White Tape">
         <div class = "welcomeScreen-wrapper">
             <div id = "helloLetters">
                 <img src = "portfolio_assets/Images/LoadingScreen/H paper cutout.png" alt="H">
@@ -27,7 +37,7 @@
                 <img src = "portfolio_assets/Images/LoadingScreen/O paper cutout.png" alt="O">
                 <img src = "portfolio_assets/Images/LoadingScreen/Exclpt paper cutout.png" alt="!">
             </div>
-            <h1>Welcome to my wacky little world :D</h1>
+            <h1>welcome to my silly little sandbox :D</h1>
             <button id="startExperience"><b>Let's Go!</b></button>
         </div>
     </section>

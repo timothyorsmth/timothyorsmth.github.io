@@ -4,6 +4,10 @@ document.getElementById('startExperience').addEventListener('click', () => {
     document.getElementById('welcomeScreen').classList.add('hidden');
 });
 
+$("#startExperience").on( "mouseenter", function() {
+    
+});
+
 function randomiseElementPositions(element) {
     // Randomise the element's position and rotation
     const randomX = Math.random() * 10 - 5;
