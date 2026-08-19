@@ -54,14 +54,21 @@ button {
 }
 
 #clickCursor {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
 
-  
+  background-image: url('../portfolio_assets/Images/Cursor/click-cursor.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 #clickCursor p {
   font-family: 'Wobbly', sans-serif;
   font-size: 1.75rem;
   text-align: center;
+  letter-spacing: -2px;
+  color:white;
+
+  transform: rotate(90deg);
 }

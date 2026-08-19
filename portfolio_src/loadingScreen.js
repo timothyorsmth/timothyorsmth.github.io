@@ -26,9 +26,6 @@ helloLetters.forEach(letter => {
         randomiseElementPositions(letter);
     });
 
-    // Return to original position when mouse leaves
-    letter.addEventListener('mouseleave', () => {
-        randomiseElementPositions(letter);
-    });
+    
 });
 

@@ -15,12 +15,7 @@
   color: black;
   font-family: 'Wobbly', sans-serif;
 
-  background-image: url('../portfolio_assets/Images/Backgrounds/dark blue paper background.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  background-attachment: fixed;
-  background-color: #263255;
+  background-color: black;
 }
 
 #welcomeScreen.hidden {
@@ -48,7 +43,13 @@
 
 #welcomeScreen .welcomeScreen-wrapper h1 {
   font-size: 2.5rem;
-  margin: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+#welcomeScreen .welcomeScreen-wrapper h3 {
+  font-size: 2rem;
+  margin-top: -1rem;
 }
 
 #helloLetters {
@@ -75,36 +76,24 @@
   transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.doodleStar1 {
-  top: 10%;
-  right: 10%;
-  width: 15%;
-  height: auto;
-}
-
-.doodleStar2 {
-  top: 7%;
-  right: 5%;
-  width: 7%;
-  height: auto;
-}
-
 .whiteTape {
   top: 5%;
   left: 5%;
-  width: 25%;
+  width: 20%;
   height: auto;
+
+  transform: rotate(-37deg);
 }
 
 #startExperience {
   background-image: url('../portfolio_assets/Images/LoadingScreen/orange button alt.png');
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
+  background-size: cover;
   background-color: transparent;
 
-  width: 100%;
-  height: 100%;
+  width: 50vh;
+  height: 10vh;
   border: none;
 
   font-family: 'Wobbly', sans-serif;
