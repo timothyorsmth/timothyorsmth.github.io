@@ -1,0 +1,83 @@
+.golf-ball {
+    transition: transform 0.35s ease-in, opacity 0.35s ease-in;
+    will-change: transform;
+}
+
+.golf-ball--holed {
+  animation: ball-enter-hole 1.0s ease-in forwards;
+}
+
+@keyframes golfBallDrop {
+    0% {
+        transform: translate(-50%, -50%) translateY(-220px) scale(0.9, 1.1);
+    }
+
+    32% {
+        transform: translate(-50%, -50%) translateY(0) scale(1.08, 0.88);
+    }
+
+    43% {
+        transform: translate(-50%, -50%) translateY(-42px) scale(0.96, 1.04);
+    }
+
+    62% {
+        transform: translate(-50%, -50%) translateY(0) scale(1.03, 0.97);
+    }
+
+    77% {
+        transform: translate(-50%, -50%) translateY(-16px) scale(0.99, 1.01);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) translateY(0) scale(1);
+    }
+}
+
+@keyframes ball-enter-hole {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  35% {
+    transform: translate(-50%, -50%) scale(1.12, 0.88);
+    opacity: 1;
+  }
+
+  70% {
+    transform: translate(-50%, -50%) scale(0.65, 0.8);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(0.05);
+    opacity: 0;
+  }
+}
+
+@keyframes shadowDrop {
+    0% {
+        transform: scale(0.45);
+        opacity: 0.12;
+    }
+
+    32% {
+        transform: scale(1.15);
+        opacity: 0.45;
+    }
+
+    43% {
+        transform: scale(0.85);
+        opacity: 0.25;
+    }
+
+    62% {
+        transform: scale(1.05);
+        opacity: 0.38;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+}

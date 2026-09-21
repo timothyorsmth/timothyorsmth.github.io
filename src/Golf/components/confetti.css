@@ -1,0 +1,43 @@
+.confetti {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti span {
+  display: block;
+  position: absolute;
+  left: var(--origin-x);
+  top: var(--origin-y);
+  width: 10px;
+  height: 16px;
+  border-radius: 2px;
+  background: #f2c14e;
+  animation: confetti-shoot 1.4s ease-out forwards;
+}
+
+.confetti span:nth-child(3n) {
+  background: #e76f51;
+}
+
+.confetti span:nth-child(3n + 1) {
+  background: #588f73;
+}
+
+.confetti span:nth-child(4n) {
+  background: #fff8dc;
+}
+
+@keyframes confetti-shoot {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translate(0, 0) rotate(0deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translate(var(--x), var(--y)) rotate(var(--rotation));
+  }
+}
