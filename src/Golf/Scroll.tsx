@@ -1,3 +1,4 @@
+/* Converts ball coordinates to page coordinates and keeps the moving ball centered within the available scroll range. */
 /** Converts a container-relative Y coordinate (e.g. the ball's position) to an absolute page Y coordinate. */
 export function toAbsoluteY(container: HTMLElement, relativeY: number): number {
   return container.getBoundingClientRect().top + window.scrollY + relativeY;

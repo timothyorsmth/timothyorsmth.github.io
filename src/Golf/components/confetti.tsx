@@ -1,3 +1,4 @@
+/* Builds a celebratory burst of particles, passing their origin and trajectories to CSS through custom properties. */
 import type { CSSProperties } from 'react';
 import './confetti.css';
 
@@ -17,11 +18,14 @@ export function Confetti({
 }: ConfettiProps) {
   if (!show) return null;
 
+  // A missing hole position falls back to the viewport center, not the document center.
   const start = origin ?? {
     x: window.innerWidth / 2,
     y: window.innerHeight / 2,
   };
 
+  // Custom properties define each particle's path; CSS performs the animation without a JS loop.
+  // The current implementation samples new trajectories each time this component renders.
   return (
     <div
       className="confetti"

@@ -1,10 +1,15 @@
+/* Visual drop-in, sinking, and shadow animations. These transforms decorate the ball without moving its physics body. */
 .golf-ball {
     transition: transform 0.35s ease-in, opacity 0.35s ease-in;
     will-change: transform;
 }
 
+.golf-ball--entered {
+  animation: golfBallDrop 1.35s linear forwards;
+}
+
 .golf-ball--holed {
-  animation: ball-enter-hole 1.0s ease-in forwards;
+  animation: ball-enter-hole 0.5s ease-out forwards;
 }
 
 @keyframes golfBallDrop {

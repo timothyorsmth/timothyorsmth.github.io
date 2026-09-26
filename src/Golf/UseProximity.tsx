@@ -1,5 +1,6 @@
+/* Subscribes an element to ball-distance updates and exposes a 0-to-1 value for visual effects. */
 import { useEffect, useState } from 'react';
-import { useGolfContext } from './GolfContext';
+import { useGolfContext } from './useGolfContext';
 
 interface UseProximityOptions {
 /** Distance in px at which closeness starts ramping up from 0. */
@@ -24,13 +25,13 @@ ref: React.RefObject<T | null>,
 const { registerProximity, unregisterProximity } = useGolfContext();
 const [proximity, setProximity] = useState(0);
 
+// The provider calculates distance; this hook only manages subscription and React state.
 useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const id = registerProximity(el, radius, setProximity);
     return () => unregisterProximity(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-}, [ref.current, radius]);
+}, [ref, radius, registerProximity, unregisterProximity]);
 
 return proximity;
 }

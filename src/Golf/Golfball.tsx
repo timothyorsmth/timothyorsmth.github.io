@@ -1,6 +1,8 @@
+/* Renders the ball, shadow, and aim line; converts pointer drags into launch velocities for usePhysics. */
 import React, { useCallback, useEffect, useState } from 'react';
-import { usePhysics, BALL_RADIUS } from './Physics';
-import { useGolfContext } from './GolfContext';
+import { usePhysics } from './Physics';
+import { BALL_RADIUS } from './world';
+import { useGolfContext } from './useGolfContext';
 import type { Vector2 } from './types';
 
 // Import CSS
@@ -11,18 +13,19 @@ const MAX_SPEED = 28;
 
 export function GolfBall() {
     const { containerRef } = useGolfContext();
-    const { position, launch, isMoving, hasHoled } = usePhysics();
+    const { position, launch, isMoving, hasHoled, setAiming } = usePhysics();
     
     const [dragStart, setDragStart] = useState<Vector2 | null>(null);
     const [dragCurrent, setDragCurrent] = useState<Vector2 | null>(null);
     const [hasEntered, setHasEntered] = useState(false);
 
-    // Trigger the bounce-in a tick after mount so the initial scale(0) actually renders first.
+    // Delay the entrance animation briefly so the initial layout can be measured first.
     useEffect(() => {
         const t = setTimeout(() => setHasEntered(true), 50);
         return () => clearTimeout(t);
     }, []);
 
+    // Pointer events use viewport pixels; aiming and physics use container-relative pixels.
     const toContainerSpace = useCallback(
         (clientX: number, clientY: number): Vector2 => {
         const rect = containerRef.current?.getBoundingClientRect();
@@ -33,8 +36,10 @@ export function GolfBall() {
     );
 
     const handlePointerDown = (e: React.PointerEvent) => {
-        if (isMoving) return;
-        (e.target as HTMLElement).setPointerCapture(e.pointerId);
+        if (isMoving || hasHoled) return;
+        setAiming(true);
+        // Keep receiving moves and release even when the pointer leaves the small ball.
+        e.currentTarget.setPointerCapture(e.pointerId);
         setDragStart(position);
         setDragCurrent(toContainerSpace(e.clientX, e.clientY));
     };
@@ -59,9 +64,8 @@ export function GolfBall() {
     
     const showAim = dragStart && dragCurrent;
 
-    // Render the ball and the aiming line (if dragging). 
-    // The ball is a simple div, but you could swap in an <img> or <canvas> or whatever. 
-    // The line is an SVG <line> that stretches from the drag start to the current pointer position.
+    // The SVG shares the course's coordinate space and never intercepts pointer input.
+    // CSS transforms center the ball on its physics position and animate its appearance.
     return (
         <>
         {showAim && (
@@ -88,10 +92,11 @@ export function GolfBall() {
             </svg>
         )}
         <div
-            className={`golf-ball ${hasHoled ? 'golf-ball--holed' : ''}`}
+            className={`golf-ball ${hasHoled ? 'golf-ball--holed' : hasEntered ? 'golf-ball--entered' : ''}`}
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
+            onPointerCancel={() => { setAiming(false); setDragStart(null); setDragCurrent(null); }}
             style={{
             position: 'absolute',
             left: position.x,
@@ -101,9 +106,8 @@ export function GolfBall() {
             borderRadius: '50%',
             background: '#f2c14e',
             transform: 'translate(-50%, -50%)',
-            animation: hasEntered ? 'golfBallDrop 1.35s linear forwards' : 'none',
             transformOrigin: 'center bottom',
-            cursor: isMoving ? 'default' : 'grab',
+            cursor: isMoving || hasHoled ? 'default' : 'grab',
             touchAction: 'none',
             zIndex: 10,
             }}
@@ -118,8 +122,8 @@ export function GolfBall() {
                     height: BALL_RADIUS / 1.25,
                     background: 'black',
                     borderRadius: '50%',
-                    opacity: 0.4,
-                    animation: hasEntered ? 'shadowDrop 1.35s linear forwards' : 'none',
+                    opacity: hasHoled ? 0 : 0.4,
+                    animation: hasEntered && !hasHoled ? 'shadowDrop 1.35s linear forwards' : 'none',
                 }}
             ></div>
         </>

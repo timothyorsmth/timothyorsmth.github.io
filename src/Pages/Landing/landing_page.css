@@ -1,65 +1,44 @@
-/* ===== Page-wide (this is the GolfProvider's coordinate-space div) ===== */
+/* Course appearance and layout. Positioned obstacle wrappers also define the rectangles measured by the physics hook. */
+/* ===== Section 1: hero section ===== */
 
-.golf-page {
-  background-color: #a6c06c;
-  background-image: var(--grass-texture);
-  background-repeat: repeat;
-  background-size: 220px 220px;
-  color: #f5f1e3;
-  font-family: 'Inter', system-ui, sans-serif;
-  overflow: hidden; /* obstacles/ball are absolutely positioned; keep the page from scroll-jumping */
-}
-
-.golf-page {
-  --grass-texture: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cg fill='none' stroke='%23557a3a' stroke-width='2' stroke-linecap='round' opacity='0.5'%3E%3Cpath d='M20 30l4-10M60 80l4-10M140 40l4-10M180 110l4-10M40 150l4-10M100 190l4-10M160 20l4-10M10 190l4-10'/%3E%3C/g%3E%3C/svg%3E");
-}
-
-.golf-page section {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  padding: 0 6%;
-}
-
-/* ===== Section 1: hero ===== */
-
-.hero-eyebrow {
+.helloText {
   position: absolute;
   left: 8.5%;
   top: 12%;
   margin: 0;
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-size: clamp(2rem, 4vw, 2.5rem);
 }
 
 /* The wrapper Obstacle renders is just a plain div — style the heading inside it. */
-.title-hitbox {
+.titleHitbox {
   position: absolute;
   left: 8.5%;
   top: 20%;
   width: 70%;
 }
 
-.hero-title {
+.nameText {
   margin: 0;
-  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-size: clamp(4rem, 9vw, 10rem);
   font-weight: 800;
   line-height: 1;
+  font-family: 'Mermaid', serif;
 }
 
-.hero-subtitle {
+.subtitleText {
   position: absolute;
   left: 8.5%;
   top: 40%;
   width: 45%;
   margin: 0;
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
   font-weight: 600;
   line-height: 1.3;
 }
 
-.scroll-cue {
+.scrollCue {
   position: absolute;
-  left: 50%;
+  left: 45%;
   bottom: 6%;
   font-size: 1.75rem;
   transition: transform 0.15s ease-out, opacity 0.15s ease-out;
@@ -90,8 +69,8 @@
 }
 
 .pill--engineer {
-  left: 8.5%;
-  top: 16%;
+  left: 10%;
+  top: 19%;
 }
 
 .pill--game {
@@ -99,81 +78,79 @@
   top: 32%;
 }
 
-.pill--design {
-  left: 27%;
-  top: 52%;
+.designContainer {
+  position: absolute;
+  display: grid;
+  left: 30%;
+  top: 47%;
 }
 
 .pill-note {
-  position: absolute;
-  left: 44%;
-  top: 61%;
+  grid-row: 1;
   font-size: clamp(1.1rem, 2vw, 1.6rem);
   font-weight: 700;
+}
+
+.pill--designer {
+  grid-row: 2;
 }
 
 /* ===== Obstacles ===== */
 /* These are the collidable elements — position/size them to match your real
    design, then the Obstacle wrapper registers whatever box they end up as. */
 
-.bar {
-  position: absolute;
-  width: 14%;
-  height: 6%;
-  min-height: 44px;
-  background: lightblue;
-  border-radius: 999px;
-}
 
-.bar--top-left {
+
+.water--topLeft {
   left: 4%;
   top: 50%;
 }
 
-.bar--right {
+.water--right {
   left: 78%;
   top: 65%;
 }
 
-.bar--warning {
-  left: 22%;
-  top: 71%;
+.water--bottomLeft {
+  grid-row: 2;
 }
 
-.helper-text {
+.helperText {
   position: absolute;
   margin: 0;
   font-size: 0.95rem;
   font-weight: 700;
 }
 
-.helper-text--hero {
+.helperText--hero {
   left: 55%;
   top: 62%;
   text-align: right;
   width: 20%;
 }
 
-.helper-text--warning {
+.waterTutorial {
+  position: absolute;
+  display:grid;
   left: 22%;
   top: 68.5%;
+  width:100%;
+  height:max-content
 }
 
-.helper-text--hole {
+.helperText--warning {
+  grid-row: 1;
+}
+
+.helperText--hole {
   left: 40%;
-  top: 90%;
+  top: 93%;
   width: 20%;
   text-align: center;
 }
 
-.hole-marker {
-  position: absolute;
+.holeMarker {
   left: 46%;
-  top: 93%;
-  width: 7%;
-  height: 2%;
-  min-height: 16px;
-  background: #2b2b2b;
-  border-radius: 50%;
+  top: 89%;
 }
 

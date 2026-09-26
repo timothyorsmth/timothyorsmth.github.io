@@ -1,35 +1,10 @@
+/* Provides the golf coordinate container and registries for obstacles and proximity effects to all descendants. */
 import React from 'react'
-import { createContext, useCallback, useContext, useRef, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 
 import type { ObstacleConfig, Vector2, ProximitySubscriber, ObstacleType } from './types'
 import { getRelativeRect } from './Collision';
-
-interface GolfContextValue {
-    containerRef: React.RefObject<HTMLDivElement | null>;
-    registerObstacle: (id: string, type: ObstacleType, element: HTMLElement) => void;
-    unregisterObstacle: (id: string) => void;
-    registerProximity: (el: HTMLElement, radius: number, onChange: (proximity: number) => void) => string;
-    unregisterProximity: (id: string) => void;
-    notifyProximity: (ballPosition: Vector2) => void;
-
-    getObstacles: () => ObstacleConfig[];
-    hasInteracted: boolean;
-    setHasInteracted: (v: boolean) => void;
-    startPoint: Vector2;
-    onReset?: () => void;
-    onHole?: (origin?: { x: number; y: number } | null) => void;
-    followScroll: boolean;
-}
-
-const GolfContext = createContext<GolfContextValue | null>(null)
-
-export function useGolfContext() {
-    const ctx = useContext(GolfContext)
-    if (!ctx) {
-        throw new Error('useGolfContext must be used within a GolfProvider')
-    }
-    return ctx
-}
+import { GolfContext } from './useGolfContext';
 
 interface GolfProviderProps {
     children: React.ReactNode
@@ -45,23 +20,28 @@ interface GolfProviderProps {
     // Called every time a reset obstacle is hit
     onReset?: () => void
 
-    // Called only when the ball reaches the hole
-    onHole?: () => void
+    // Called after sinking, with the hole center in viewport pixels for the confetti overlay.
+    onHole?: (origin: Vector2) => void
 
     className?: string;
+    sampleWind?: (position: Vector2, time: number) => Vector2;
     style?: React.CSSProperties;
+    persistenceKey?: string; // Opt-in session restoration of the ball and camera.
+    horizontalScrollRef?: React.RefObject<HTMLElement | null>;
+    horizontalAreaRef?: React.RefObject<HTMLElement | null>;
     followScroll?: boolean; // if true, the viewport will follow the ball as it moves
 }
 
-export function GolfProvider({ children, startPoint, onReset, onHole, className, style, followScroll = true }: GolfProviderProps) {
+export function GolfProvider({ children, startPoint, onReset, onHole, className, style, persistenceKey, horizontalScrollRef, horizontalAreaRef, sampleWind, followScroll = true }: GolfProviderProps) {
     const containerRef = useRef<HTMLDivElement>(null)
+    // Registrations are read by the physics loop; changing them need not re-render the page.
     const obstaclesRef = useRef<Map<string, ObstacleConfig>>(new Map())
     const proximityRef = useRef<Map<string, ProximitySubscriber>>(new Map())
     const proximityIdRef = useRef(0);
     const [hasInteracted, setHasInteracted] = useState(false)
 
-    const registerObstacle = useCallback((id: string, type: ObstacleType, element: HTMLElement) => {
-        obstaclesRef.current.set(id, { id, type, element })
+    const registerObstacle = useCallback((id: string, type: ObstacleType, element: HTMLElement, onHit?: () => void) => {
+        obstaclesRef.current.set(id, { id, type, element, onHit })
     }, []);
 
     const unregisterObstacle = useCallback((id: string) => {
@@ -115,6 +95,10 @@ export function GolfProvider({ children, startPoint, onReset, onHole, className,
                 onReset,
                 onHole,
                 followScroll,
+                sampleWind,
+                persistenceKey,
+                horizontalScrollRef,
+                horizontalAreaRef,
             }}
         >
 

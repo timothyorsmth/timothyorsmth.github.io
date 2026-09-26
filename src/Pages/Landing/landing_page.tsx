@@ -1,5 +1,7 @@
+/* Composes the introductory golf course: hero, skills, obstacles, helper text, scroll cue, and playable ball. */
 import React, { useRef } from 'react';
-import { GolfProvider, useGolfContext } from '../../Golf/GolfContext';
+import { GolfProvider } from '../../Golf/GolfContext';
+import { useGolfContext } from '../../Golf/useGolfContext';
 import { GolfBall } from '../../Golf/Golfball';
 import { Obstacle } from '../../Golf/Obstacle';
 import { useProximity } from '../../Golf/UseProximity.tsx';
@@ -14,17 +16,17 @@ function HelperText({ className, children }: { className: string; children: Reac
     return <p className={className}>{children}</p>;
 }
 
-/** Grows and brightens as the ball gets close, instead of just sitting static. */
+/** Shrinks and fades as the ball approaches, so the cue does not compete with the ball. */
 function ScrollCue() {
     const ref = useRef<HTMLDivElement>(null);
-    const proximity = useProximity(ref, { radius: 500 });
+    const proximity = useProximity(ref, { radius: 300 });
 
     const visibility = Math.max(0, 1 - proximity * 1.4);
 
     return (
         <div
         ref={ref}
-        className="scroll-cue"
+        className="scrollCue"
         style={{
             transform: `translateX(-50%) scale(${0.7 + visibility * 0.3})`,
             opacity: visibility,
@@ -38,51 +40,35 @@ function ScrollCue() {
     );
 }
 
-
-
 interface LandingPageProps {
-  /** Called when the ball reaches the hole. */
+  /** Called after sinking, with a viewport origin for the celebration. */
   onComplete?: (origin: { x: number; y: number } | null) => void;
 }
 
+// All interactive elements share the provider's coordinate space and obstacle registry.
 export function LandingPage({ onComplete }: LandingPageProps) {
-  const holeRef = useRef<HTMLDivElement>(null);
-
-  const handleHoleComplete = () => {
-    const rect = holeRef.current?.getBoundingClientRect();
-
-    const origin = rect
-      ? {
-          x: rect.left + rect.width / 2 + window.scrollX,
-          y: rect.top + rect.height / 2 + window.scrollY,
-        }
-      : null;
-
-    onComplete?.(origin);
-  };
-
   return (
     <GolfProvider
-      className="golf-page"
+      className="golfPlayablePage"
       startPoint={{ x: 0.7, y: 0.36 }} // ~70% across, ~36% down the full page — tune to your real ball spot
-      onHole={handleHoleComplete}
+      onHole={onComplete}
     >
-      {/* ---------- Section 1: hero ---------- */}
+      {/* ---------- Section 1: hero section ---------- */}
       <section className="hero">
-        <p className="hero-eyebrow">hey!</p>
+        <p className="helloText">hey there!</p>
 
-        <Obstacle type="wall" className="title-hitbox">
-          <h1 className="hero-title">i'm timothy :)</h1>
+        <Obstacle type="wall" className="titleHitbox">
+          <h1 className="nameText">i'm timothy!</h1>
         </Obstacle>
 
-        <p className="hero-subtitle">
-          i make things that solve problems
+        <p className="subtitleText">
+          i make solutions that solve problems
           <br />
-          and make life better
+          and make life more fun :)
         </p>
 
-        <HelperText className="helper-text helper-text--hero">
-          click and drag to putt the ball
+        <HelperText className="helperText helperText--hero">
+          click and drag to putt
         </HelperText>
 
         <ScrollCue />
@@ -92,26 +78,31 @@ export function LandingPage({ onComplete }: LandingPageProps) {
       <section className="about">
         <p className="about-eyebrow">i am a</p>
 
-        <span className="pill pill--engineer">software engineer</span>
-        <span className="pill pill--game">game developer</span>
+        <Obstacle type="wall" className="pill pill--engineer">software engineer</Obstacle>
+        <Obstacle type="wall" className="pill pill--game">game developer</Obstacle>
 
-        <span className="pill pill--design">ui/ux designer</span>
-        <span className="pill-note">(sometimes)</span>
-
-        <HelperText className="helper-text helper-text--warning">don't hit these</HelperText>
-
-        <Obstacle type="reset" className="bar bar--top-left" aria-label="obstacle" />
-        <Obstacle type="reset" className="bar bar--right" aria-label="obstacle" />
-        <Obstacle type="reset" className="bar bar--warning" aria-label="obstacle" />
-
-        <HelperText className="helper-text helper-text--hole">putt into here</HelperText>
-        <div ref={holeRef}>
-          <Obstacle
-            type="hole"
-            className="hole-marker"
-            aria-label="finish"
-          />
+        <div className = "designContainer">
+          <span className="pill-note">(sometimes)</span>
+          <Obstacle type="wall" className="pill pill--designer">ui/ux designer</Obstacle>
         </div>
+
+
+        <Obstacle type="reset" className="water water--topLeft" aria-label="obstacle" />
+        <Obstacle type="reset" className="water water--right" aria-label="obstacle" />
+        <div className="waterTutorial">
+          <p className="helperText--warning">hit to go to the top</p>
+          <Obstacle type="reset" className="water water--bottomLeft" aria-label="obstacle" />
+        </div>
+
+
+        <Obstacle
+          type="hole"
+          className="holeMarker"
+          aria-label="finish"
+        />
+
+        <p className="helperText helperText--hole">putt into here</p>
+
       </section>
 
       <GolfBall />

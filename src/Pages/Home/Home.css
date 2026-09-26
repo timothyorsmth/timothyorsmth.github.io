@@ -1,0 +1,407 @@
+/* Scope Home's layout so the landing course and its obstacle styles are unaffected. */
+.golfPlayablePage.home-page {
+  --home-cream: #f5f1e3;
+  --home-green: #548a70;
+  --home-header-height: 88px;
+  --home-gutter: clamp(24px, 5.5vw, 88px);
+  color: var(--home-cream);
+  /* clip prevents document-wide horizontal scrolling without breaking the sticky header. */
+  overflow: clip;
+}
+
+.home-page *,
+.home-page *::before,
+.home-page *::after {
+  box-sizing: border-box;
+}
+
+.home-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 48px);
+  min-height: var(--home-header-height);
+  padding: 16px var(--home-gutter);
+}
+
+.home-brand {
+  flex-shrink: 0;
+  color: var(--home-cream);
+  font-size: clamp(20px, 2.2vw, 30px);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.home-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.home-nav a,
+.home-nav button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 9px 24px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--home-cream);
+  color: #2f634b;
+  font: bold 13px 'AlteHaasGrotesk', sans-serif;
+  text-decoration: none;
+}
+
+.home-nav button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.home-nav a:hover,
+.home-project-arrow:not(:disabled):hover {
+  background: white;
+}
+
+.home-page :focus-visible {
+  outline: 3px solid #244f3a;
+  outline-offset: 5px;
+}
+
+/* Normal vertical flow keeps About full-width, independent of the wider project list. */
+.home-page .home-about {
+  min-height: calc(100svh - var(--home-header-height) - 140px);
+  padding: clamp(48px, 8vh, 110px) var(--home-gutter) 50px;
+  scroll-margin-top: var(--home-header-height);
+}
+
+/* Physics measures this wrapper: shrink it to the heading instead of the full row. */
+.home-about .homeTitle {
+  width: fit-content;
+  max-width: 100%;
+}
+
+.home-about h1,
+.home-projects h2 {
+  margin: 0;
+  font-size: clamp(48px, 7.5vw, 104px);
+  font-weight: bold;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+  font-family: Mermaid, 'Times New Roman', serif;
+}
+
+.home-about-content {
+  display: grid;
+  grid-template-columns: clamp(180px, 28svh, 280px) minmax(0, 500px);
+  align-items: center;
+  gap: clamp(28px, 3.5vw, 60px);
+  margin-top: 20px;
+}
+
+.home-portrait {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+}
+
+.home-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.home-bio {
+  font-size: clamp(17px, 1.9vw, 24px);
+  font-weight: bold;
+  line-height: 1.25;
+}
+
+.home-bio p {
+  margin: 0 0 1.15em;
+}
+
+.home-bio p:last-child {
+  margin-bottom: 0;
+}
+
+.home-page .home-projects {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100svh - var(--home-header-height));
+  padding: 0 0 36px;
+  scroll-margin-top: var(--home-header-height);
+}
+
+/* Only this list overflows sideways. Touch and keyboard users retain native scrolling. */
+.home-project-viewport {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Faded edges and fixed arrow targets make off-screen content discoverable. */
+.home-project-viewport::before,
+.home-project-viewport::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: clamp(48px, 7vw, 100px);
+  pointer-events: none;
+  opacity: 0;
+  content: '';
+}
+
+.home-project-viewport::before {
+  left: 0;
+  background: linear-gradient(to right, #a6c06c, #a6c06c00);
+}
+
+.home-project-viewport::after {
+  right: 0;
+  background: linear-gradient(to left, #a6c06c, #a6c06c00);
+}
+
+.home-project-viewport[data-can-go-back="true"]::before,
+.home-project-viewport[data-can-go-forward="true"]::after {
+  opacity: 1;
+}
+
+.home-project-gallery {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: clamp(48px, 9vw, 140px);
+  width: 100%;
+  min-height: 420px;
+  margin: 0;
+  padding: 80px max(var(--home-gutter), 8vw) 20px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #f5f1e380 transparent;
+  list-style: none;
+}
+
+.home-project-slot {
+  flex: 0 0 clamp(220px, 24vw, 330px);
+  min-width: 0;
+}
+
+/* Stagger the cards vertically, like stepping stones in the reference. */
+.home-project-slot:nth-child(3n + 2) {
+  transform: translateY(-26px);
+}
+
+.home-project-slot:nth-child(3n) {
+  transform: translateY(26px);
+}
+
+.home-project-card {
+  display: block;
+  padding: 8px;
+  border-radius: 20px;
+  background: var(--home-cream);
+  color: var(--home-cream);
+  text-decoration: none;
+}
+
+.home-project-image {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  aspect-ratio: 1.08;
+  overflow: hidden;
+  border-radius: 13px;
+  /* Cover the preview with the JSON image, keeping green as a loading fallback. */
+  background: var(--home-green);
+  background-size: cover;
+  background-position: center;
+}
+
+.home-project-image::after {
+  position: absolute;
+  inset: 45% 0 0;
+  background: linear-gradient(transparent, #163c2cd9);
+  content: '';
+}
+
+.home-project-image h3 {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 12px 10px;
+  font-size: clamp(17px, 1.8vw, 25px);
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.home-project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 30px;
+  margin: 0;
+  padding: 9px 3px 2px;
+  list-style: none;
+}
+
+.home-project-tags li {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #d2d1b9;
+  color: #fffef5;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 1.15;
+}
+
+.home-projects-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px var(--home-gutter) 0;
+}
+
+.home-projects-footer p {
+  margin: 14px 0 0;
+  font-size: 14px;
+}
+
+.home-project-position {
+  flex-shrink: 0;
+  width: clamp(180px, 24vw, 300px);
+  padding-bottom: 8px;
+}
+
+.home-project-position label {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.home-project-position input {
+  display: block;
+  width: 100%;
+  height: 30px;
+  margin: 8px 0 0;
+  accent-color: #2f634b;
+  cursor: ew-resize;
+}
+
+.home-project-position input:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.home-project-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 76px;
+  transform: translateY(-50%);
+  border: 2px solid #2f634b;
+  border-radius: 24px;
+  background: var(--home-cream);
+  color: #2f634b;
+  box-shadow: 0 4px 0 #2f634b40;
+  font-family: inherit;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.home-project-arrow--previous { left: 16px; }
+.home-project-arrow--next { right: 16px; }
+
+.home-project-arrow-label {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.home-project-arrow:disabled {
+  opacity: 0.25;
+  box-shadow: none;
+  cursor: default;
+}
+
+.home-projects-empty {
+  padding-inline: var(--home-gutter);
+}
+
+@media (max-width: 600px) {
+  .golfPlayablePage.home-page {
+    --home-header-height: 110px;
+  }
+
+  .home-header {
+    align-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .home-nav {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .home-nav a,
+  .home-nav button {
+    min-height: 34px;
+    padding: 8px 14px;
+    font-size: 11px;
+  }
+
+  .home-page .home-about {
+    padding-top: 48px;
+    padding-bottom: 58px;
+  }
+
+  .home-about-content {
+    grid-template-columns: minmax(100px, 0.8fr) minmax(0, 1.2fr);
+    align-items: start;
+    gap: 20px;
+  }
+
+  .home-bio {
+    font-size: 16px;
+    line-height: 1.35;
+  }
+
+  .home-project-gallery {
+    min-height: 390px;
+    gap: 36px;
+  }
+
+  .home-project-slot {
+    flex-basis: 68vw;
+  }
+
+  .home-projects-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .home-project-position { width: 100%; }
+  .home-project-arrow { width: 48px; height: 64px; border-radius: 18px; }
+  .home-project-arrow--previous { left: 8px; }
+  .home-project-arrow--next { right: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a.home-project-card {
+    transition: none;
+  }
+}
