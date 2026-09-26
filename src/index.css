@@ -19,18 +19,18 @@
 /* ==== Custom Fonts ==== */
 @font-face {
   font-family: AlteHaasGrotesk; 
-  src: url(fonts/AlteHaasGroteskRegular.ttf); 
+  src: url('/fonts/AlteHaasGroteskRegular.ttf'); 
 }
 
 @font-face {
   font-family: AlteHaasGrotesk;
-  src: url(fonts/AlteHaasGroteskBold.ttf);
+  src: url('/fonts/AlteHaasGroteskBold.ttf');
   font-weight: bold;
 }
 
 @font-face {
   font-family: Mermaid; 
-  src: url(fonts/Mermaid1001.ttf); 
+  src: url('/fonts/Mermaid1001.ttf'); 
 }
 
 /* ===== Page-wide (this is the GolfProvider's coordinate-space div) ===== */

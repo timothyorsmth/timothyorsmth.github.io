@@ -6,6 +6,7 @@ import { GolfLink } from '../../Golf/GolfLink';
 import { projects as projectList, projectAssetUrl, projectViewUrl } from '../../data/projects';
 import type { Project } from '../../data/projects';
 import './Home.css';
+import portraitUrl from '../../assets/pic_of_me.png';
 import { Obstacle } from '../../Golf/Obstacle';
 
 /** The same metadata drives the gallery and the project detail page. */
@@ -129,7 +130,7 @@ export function HomePage({ projects, contactHref }: HomePageProps = {}) {
         
         <div className="home-about-content">
           <div className="home-portrait">
-            <img src="src\assets\pic_of_me.png" alt="Timothy Luk" />
+            <img src={portraitUrl} alt="Timothy Luk" />
           </div>
           <div className="home-bio">
             <p>Hello!<br />I’m Timothy Luk, a year 1 computer science student based in Singapore.</p>
