@@ -1,5 +1,7 @@
 # Portfolio
 
+Before you say anything, this website is still a work in progress. Sorry if it looks kind of scuffed. 
+
 For my portfolio, I wanted to make a fun and interactive website, that users can have fun navigating. 
 
 Therefore, when I started designing the website, I had a few considerations:
@@ -41,4 +43,4 @@ I played around with the idea of having buttons that can be pressed with golf ba
 
 Additionally, on regular webpages, you can press a "back-to-top" button, which takes you to the top of the website. However, to fit the "mini-golf" concept, I realise we can make these buttons similar to water obstacles found in fairways and existing mini-golf games. 
 
-For the implementation, we utilised React, TSX, matter.js for the physics, and also github pages for the deployment. 
+For the implementation, I utilised React, TSX, matter.js for the physics, and also github pages for the deployment. 
