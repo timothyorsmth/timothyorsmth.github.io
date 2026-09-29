@@ -1,13 +1,15 @@
-# Portfolio
+# personal portfolio
 
-Before you say anything, this website is still a work in progress. Sorry if it looks kind of scuffed. 
+> **Duration:** 2 months · **Team:** Solo
 
-For my portfolio, I wanted to make a fun and interactive website, that users can have fun navigating. 
+Before you say anything, this website is still a work in progress. Sorry if it looks kind of scuffed.
+
+For my personal portfolio, I wanted to make a fun and interactive website, that reflects my personality and vibe.
 
 Therefore, when I started designing the website, I had a few considerations:
-- Needs to reflect my personality
+- Needs to reflect my personality and aesthetic
 - Needs to be fun to play around with
-- Needs to still be aesthetic and technically good. 
+- Needs to be technically interesting. 
 
 <!-- chunk -->
 
