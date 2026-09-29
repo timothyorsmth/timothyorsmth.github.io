@@ -84,7 +84,7 @@ export function GolfBall() {
                 y1={dragStart.y}
                 x2={dragCurrent.x}
                 y2={dragCurrent.y}
-                stroke="white"
+                stroke="var(--colour--white)"
                 strokeWidth={3}
                 strokeDasharray="6 6"
                 opacity={0.8}
@@ -104,7 +104,7 @@ export function GolfBall() {
             width: BALL_RADIUS * 2,
             height: BALL_RADIUS * 2,
             borderRadius: '50%',
-            background: '#f2c14e',
+            background: 'var(--colour--yellow)',
             transform: 'translate(-50%, -50%)',
             transformOrigin: 'center bottom',
             cursor: isMoving || hasHoled ? 'default' : 'grab',
@@ -120,7 +120,7 @@ export function GolfBall() {
                     top: position.y + BALL_RADIUS * 0.6,
                     width: BALL_RADIUS * 2,
                     height: BALL_RADIUS / 1.25,
-                    background: 'black',
+                    background: 'var(--colour--black)',
                     borderRadius: '50%',
                     opacity: hasHoled ? 0 : 0.4,
                     animation: hasEntered && !hasHoled ? 'shadowDrop 1.35s linear forwards' : 'none',

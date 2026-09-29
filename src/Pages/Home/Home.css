@@ -1,10 +1,8 @@
 /* Scope Home's layout so the landing course and its obstacle styles are unaffected. */
 .golfPlayablePage.home-page {
-  --home-cream: #f5f1e3;
-  --home-green: #548a70;
   --home-header-height: 88px;
   --home-gutter: clamp(24px, 5.5vw, 88px);
-  color: var(--home-cream);
+  color: var(--colour--beige);
   /* clip prevents document-wide horizontal scrolling without breaking the sticky header. */
   overflow: clip;
 }
@@ -15,58 +13,12 @@
   box-sizing: border-box;
 }
 
-.home-header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  gap: clamp(20px, 3vw, 48px);
-  min-height: var(--home-header-height);
-  padding: 16px var(--home-gutter);
-}
-
-.home-brand {
-  flex-shrink: 0;
-  color: var(--home-cream);
-  font-size: clamp(20px, 2.2vw, 30px);
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.home-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.home-nav a,
-.home-nav button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 38px;
-  padding: 9px 24px;
-  border: 0;
-  border-radius: 999px;
-  background: var(--home-cream);
-  color: #2f634b;
-  font: bold 13px 'AlteHaasGrotesk', sans-serif;
-  text-decoration: none;
-}
-
-.home-nav button:disabled {
-  opacity: 0.65;
-  cursor: not-allowed;
-}
-
-.home-nav a:hover,
 .home-project-arrow:not(:disabled):hover {
-  background: white;
+  background: var(--colour--white);
 }
 
 .home-page :focus-visible {
-  outline: 3px solid #244f3a;
+  outline: 3px solid var(--colour--green-dark);
   outline-offset: 5px;
 }
 
@@ -159,12 +111,12 @@
 
 .home-project-viewport::before {
   left: 0;
-  background: linear-gradient(to right, #a6c06c, #a6c06c00);
+  background: linear-gradient(to right, var(--colour--green), var(--colour--green-transparent));
 }
 
 .home-project-viewport::after {
   right: 0;
-  background: linear-gradient(to left, #a6c06c, #a6c06c00);
+  background: linear-gradient(to left, var(--colour--green), var(--colour--green-transparent));
 }
 
 .home-project-viewport[data-can-go-back="true"]::before,
@@ -184,7 +136,7 @@
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scrollbar-width: thin;
-  scrollbar-color: #f5f1e380 transparent;
+  scrollbar-color: var(--colour--beige-translucent) var(--colour--transparent);
   list-style: none;
 }
 
@@ -206,8 +158,8 @@
   display: block;
   padding: 8px;
   border-radius: 20px;
-  background: var(--home-cream);
-  color: var(--home-cream);
+  background: var(--colour--beige);
+  color: var(--colour--beige);
   text-decoration: none;
 }
 
@@ -219,7 +171,7 @@
   overflow: hidden;
   border-radius: 13px;
   /* Cover the preview with the JSON image, keeping green as a loading fallback. */
-  background: var(--home-green);
+  background: var(--colour--green-card);
   background-size: cover;
   background-position: center;
 }
@@ -227,7 +179,7 @@
 .home-project-image::after {
   position: absolute;
   inset: 45% 0 0;
-  background: linear-gradient(transparent, #163c2cd9);
+  background: linear-gradient(var(--colour--transparent), var(--colour--green-shade));
   content: '';
 }
 
@@ -254,8 +206,8 @@
 .home-project-tags li {
   padding: 3px 10px;
   border-radius: 999px;
-  background: #d2d1b9;
-  color: #fffef5;
+  background: var(--colour--beige-muted);
+  color: var(--colour--beige-white);
   font-size: 11px;
   font-weight: bold;
   line-height: 1.15;
@@ -293,7 +245,7 @@
   width: 100%;
   height: 30px;
   margin: 8px 0 0;
-  accent-color: #2f634b;
+  accent-color: var(--colour--green-link);
   cursor: ew-resize;
 }
 
@@ -313,11 +265,11 @@
   width: 68px;
   height: 76px;
   transform: translateY(-50%);
-  border: 2px solid #2f634b;
+  border: 2px solid var(--colour--green-link);
   border-radius: 24px;
-  background: var(--home-cream);
-  color: #2f634b;
-  box-shadow: 0 4px 0 #2f634b40;
+  background: var(--colour--beige);
+  color: var(--colour--green-link);
+  box-shadow: 0 4px 0 var(--colour--green-shadow);
   font-family: inherit;
   font-size: 32px;
   cursor: pointer;
@@ -344,24 +296,6 @@
 @media (max-width: 600px) {
   .golfPlayablePage.home-page {
     --home-header-height: 110px;
-  }
-
-  .home-header {
-    align-content: center;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .home-nav {
-    width: 100%;
-    gap: 8px;
-  }
-
-  .home-nav a,
-  .home-nav button {
-    min-height: 34px;
-    padding: 8px 14px;
-    font-size: 11px;
   }
 
   .home-page .home-about {

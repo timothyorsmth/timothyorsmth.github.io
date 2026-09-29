@@ -59,8 +59,8 @@
   position: absolute;
   display: inline-flex;
   align-items: center;
-  background: #f5f1e3;
-  color: #2f4b3c;
+  background: var(--colour--beige);
+  color: var(--colour--green-forest);
   font-weight: 700;
   font-size: clamp(1rem, 1.8vw, 1.5rem);
   padding: 0.9em 1.6em;

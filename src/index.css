@@ -1,3 +1,42 @@
+/* Shared site palette. Change these values to recolour every page. */
+:root {
+  --colour--green: #a6c06c;
+  --colour--green-dark: #244f3a;
+  --colour--green-link: #2f634b;
+  --colour--green-text: #326b50;
+  --colour--green-forest: #2f4b3c;
+  --colour--green-card: #548a70;
+  --colour--green-confetti: #588f73;
+  --colour--green-markdown: #05714d;
+  --colour--green-grass: #557a3a;
+  --colour--green-overlay: #163c2c;
+  --colour--beige: #f5f1e3;
+  --colour--beige-light: #f5f3dd;
+  --colour--beige-muted: #d2d1b9;
+  --colour--beige-white: #fffef5;
+  --colour--cream: #fff8dc;
+  --colour--blue: #245a92;
+  --colour--blue-light: #add8e6;
+  --colour--blue-pale: #c7e8ef;
+  --colour--red: #aa3030;
+  --colour--orange: #e76f51;
+  --colour--purple: #784197;
+  --colour--gold: #806000;
+  --colour--yellow: #f2c14e;
+  --colour--charcoal: #2b2b2b;
+  --colour--white: #ffffff;
+  --colour--black: #000000;
+  --colour--transparent: transparent;
+
+  /* Transparent variants follow their base colours. */
+  --colour--green-transparent: color-mix(in srgb, var(--colour--green) 0%, transparent);
+  --colour--beige-translucent: color-mix(in srgb, var(--colour--beige) 50.2%, transparent);
+  --colour--green-shade: color-mix(in srgb, var(--colour--green-overlay) 85.1%, transparent);
+  --colour--green-shadow: color-mix(in srgb, var(--colour--green-link) 25.1%, transparent);
+  --colour--white-highlight: color-mix(in srgb, var(--colour--white) 18.8%, transparent);
+  --colour--black-shadow: color-mix(in srgb, var(--colour--black) 26.7%, transparent);
+}
+
 /* Shared page wrapper and entrance animation used by the application shell. */
 .page {
   min-height: 100vh;
@@ -36,18 +75,30 @@
 /* ===== Page-wide (this is the GolfProvider's coordinate-space div) ===== */
 
 .golfPlayablePage {
-  background-color: #a6c06c;
-  background-image: var(--grass-texture);
-  background-repeat: repeat;
-  background-size: 220px 220px;
-  color: #f5f1e3;
+  background-color: var(--colour--green);
+  position: relative;
+  isolation: isolate;
+  color: var(--colour--beige);
   font-family: 'AlteHaasGrotesk', 'Inter', sans-serif;
   overflow: hidden; /* obstacles/ball are absolutely positioned; keep the page from scroll-jumping */
 }
 
-/* improve this */
+/* Short, rounded three-blade tufts scattered across a seamless tile. */
 .golfPlayablePage {
-  --grass-texture: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cg fill='none' stroke='%23557a3a' stroke-width='2' stroke-linecap='round' opacity='0.5'%3E%3Cpath d='M20 30l4-10M60 80l4-10M140 40l4-10M180 110l4-10M40 150l4-10M100 190l4-10M160 20l4-10M10 190l4-10'/%3E%3C/g%3E%3C/svg%3E");
+  --grass-texture: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22240%22%20viewBox%3D%220%200%20240%20240%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23000000%22%20stroke-width%3D%221.2%22%20stroke-linecap%3D%22round%22%20opacity%3D%22.45%22%3E%3Cpath%20transform%3D%22translate(14%2018)%20rotate(-9)%22%20d%3D%22M-3%200l-.6-2.4M0%200v-3.2M3%200l.5-2.3%22%2F%3E%3Cpath%20transform%3D%22translate(77%2010)%20rotate(5)%22%20d%3D%22M-3%200l-.6-2.4M0%200v-3.2M3%200l.5-2.3%22%2F%3E%3Cpath%20transform%3D%22translate(143%2026)%20rotate(-3)%22%20d%3D%22M-3%200l-.6-2.4M0%200v-3.2M3%200l.5-2.3%22%2F%3E%3Cpath%20transform%3D%22translate(216%2014)%20rotate(8)%22%20d%3D%22M-3%200l-.6-2.4M0%200v-3.2M3%200l.5-2.3%22%2F%3E%3Cpath%20transform%3D%22translate(42%2057)%20rotate(-9)%22%20d%3D%22M-3%200l-.6-2.4M0%200v-3.2M3%200l.5-2.3%22%2F%3E%3Cpath%20transform%3D%22translate(111%2068)%20rotate(5)%22%20d%3D%22M-3%200l-.6-2.4M0%200v-3.2M3%200l.5-2.3%22%2F%3E%3Cpath%20transform%3D%22translate(179%2053)%20rotate(-3)%22%20d%3D%22M-3%200l-.6-2.4M0%200v-3.2M3%200l.5-2.3%22%2F%3E%3Cpath%20transform%3D%22translate(231%2082)%20rotate(8)%22%20d%3D%22M-3%200l-.6-2.4M0%200v-3.2M3%200l.5-2.3%22%2F%3E%3Cpath%20transform%3D%22translate(12%20105)%20rotate(-9)%22%20d%3D%22M-3%200l-.6-2.4M0%200v-3.2M3%200l.5-2.3%22%2F%3E%3Cpath%20transform%3D%22translate(71%20113)%20rotate(5)%22%20d%3D%22M-3%200l-.6-2.4M0%200v-3.2M3%200l.5-2.3%22%2F%3E%3Cpath%20transform%3D%22translate(143%20101)%20rotate(-3)%22%20d%3D%22M-3%200l-.6-2.4M0%200v-3.2M3%200l.5-2.3%22%2F%3E%3Cpath%20transform%3D%22translate(197%20123)%20rotate(8)%22%20d%3D%22M-3%200l-.6-2.4M0%200v-3.2M3%200l.5-2.3%22%2F%3E%3Cpath%20transform%3D%22translate(39%20155)%20rotate(-9)%22%20d%3D%22M-3%200l-.6-2.4M0%200v-3.2M3%200l.5-2.3%22%2F%3E%3Cpath%20transform%3D%22translate(109%20163)%20rotate(5)%22%20d%3D%22M-3%200l-.6-2.4M0%200v-3.2M3%200l.5-2.3%22%2F%3E%3Cpath%20transform%3D%22translate(169%20150)%20rotate(-3)%22%20d%3D%22M-3%200l-.6-2.4M0%200v-3.2M3%200l.5-2.3%22%2F%3E%3Cpath%20transform%3D%22translate(225%20175)%20rotate(8)%22%20d%3D%22M-3%200l-.6-2.4M0%200v-3.2M3%200l.5-2.3%22%2F%3E%3Cpath%20transform%3D%22translate(16%20208)%20rotate(-9)%22%20d%3D%22M-3%200l-.6-2.4M0%200v-3.2M3%200l.5-2.3%22%2F%3E%3Cpath%20transform%3D%22translate(78%20222)%20rotate(5)%22%20d%3D%22M-3%200l-.6-2.4M0%200v-3.2M3%200l.5-2.3%22%2F%3E%3Cpath%20transform%3D%22translate(141%20203)%20rotate(-3)%22%20d%3D%22M-3%200l-.6-2.4M0%200v-3.2M3%200l.5-2.3%22%2F%3E%3Cpath%20transform%3D%22translate(193%20224)%20rotate(8)%22%20d%3D%22M-3%200l-.6-2.4M0%200v-3.2M3%200l.5-2.3%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+}
+
+/* An alpha mask lets the SVG tufts use the shared grass colour. */
+.golfPlayablePage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--colour--green-grass);
+  mask-image: var(--grass-texture);
+  mask-repeat: repeat;
+  mask-size: 240px 240px;
 }
 
 .golfPlayablePage section {
@@ -63,7 +114,7 @@
   width: 14%;
   height: 6%;
   min-height: 44px;
-  background: lightblue;
+  background: var(--colour--blue-light);
   border-radius: 999px;
 }
 
@@ -72,6 +123,6 @@
   width: 7%;
   height: 2%;
   min-height: 16px;
-  background: #2b2b2b;
+  background: var(--colour--charcoal);
   border-radius: 50%;
 }

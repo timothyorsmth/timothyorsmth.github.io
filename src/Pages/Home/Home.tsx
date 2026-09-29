@@ -2,7 +2,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { GolfProvider } from '../../Golf/GolfContext';
 import { GolfBall } from '../../Golf/Golfball';
-import { GolfLink } from '../../Golf/GolfLink';
+import { NavBar } from '../../components/navbar/navbar';
 import { projects as projectList, projectAssetUrl, projectViewUrl } from '../../data/projects';
 import type { Project } from '../../data/projects';
 import './Home.css';
@@ -112,16 +112,7 @@ export function HomePage({ projects, contactHref }: HomePageProps = {}) {
   return (
     <GolfProvider className="golfPlayablePage home-page" startPoint={{ x: 0.76, y: 0.12 }} followScroll persistenceKey="portfolio-home-course"
       horizontalScrollRef={galleryRef} horizontalAreaRef={projectsRef}>
-      <header className="home-header" ref={headerRef}>
-        <GolfLink className="home-brand" href="#home-about" aria-label="Timothy, back to about me">timothy :)</GolfLink>
-        <nav className="home-nav" aria-label="Home navigation">
-          <GolfLink href="#home-about">about me :)</GolfLink>
-          {contactHref ? <GolfLink href={contactHref}>contact me!</GolfLink> : (
-            <button type="button" disabled title="Contact page coming soon">contact me!</button>
-          )}
-          <GolfLink href="#home-projects">more levels?</GolfLink>
-        </nav>
-      </header>
+      <NavBar home playable headerRef={headerRef} contactHref={contactHref} />
 
       <section className="home-about" id="home-about">
         <Obstacle type="wall" className="homeTitle">

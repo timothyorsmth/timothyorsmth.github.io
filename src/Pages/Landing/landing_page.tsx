@@ -6,6 +6,7 @@ import { GolfBall } from '../../Golf/Golfball';
 import { Obstacle } from '../../Golf/Obstacle';
 import { useProximity } from '../../Golf/UseProximity.tsx';
 import './landing_page.css';
+import { NavBar } from '../../components/navbar/navbar';
 
 import { FaArrowDown } from "react-icons/fa";
 
@@ -53,6 +54,7 @@ export function LandingPage({ onComplete }: LandingPageProps) {
       startPoint={{ x: 0.7, y: 0.36 }} // ~70% across, ~36% down the full page — tune to your real ball spot
       onHole={onComplete}
     >
+      <NavBar playable />
       {/* ---------- Section 1: hero section ---------- */}
       <section className="hero">
         <p className="helloText">hey there!</p>

@@ -1,0 +1,71 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 48px);
+  min-height: 88px;
+  padding: 16px clamp(24px, 5.5vw, 88px);
+}
+
+.navbar-brand {
+  flex-shrink: 0;
+  color: var(--colour--beige);
+  font-size: clamp(20px, 2.2vw, 30px);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.navbar-links a,
+.navbar-links button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 9px 24px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--colour--beige);
+  color: var(--colour--green-link);
+  font: bold 13px 'AlteHaasGrotesk', sans-serif;
+  text-decoration: none;
+}
+
+.navbar-links button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+
+.navbar, .navbar * { box-sizing: border-box; }
+.navbar-links a:hover { background: var(--colour--white); }
+.navbar :focus-visible { outline: 3px solid var(--colour--green-dark); outline-offset: 5px; }
+
+@media (max-width: 600px) {
+  .navbar {
+    min-height: 110px;
+    align-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .navbar-links {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .navbar-links a,
+  .navbar-links button {
+    min-height: 34px;
+    padding: 8px 14px;
+    font-size: 11px;
+  }
+
+}
